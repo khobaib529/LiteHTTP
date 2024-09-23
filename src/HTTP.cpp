@@ -42,6 +42,8 @@ void HTTP::listen(short port, const char *ip_address, void (*)()) {
     address.sin_addr.s_addr = INADDR_ANY;       // Accept connections from any IP address
     address.sin_port = htons(port);               // Convert port number to network byte order
 
+    bind_socket(ip_address);
+
     // Start listening for incoming connections
     if (::listen(server_fd, 3) == -1) {
         perror("listen failed");
